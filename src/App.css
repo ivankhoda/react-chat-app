@@ -36,3 +36,6 @@
     transform: rotate(360deg);
   }
 }
+.chat_messages {
+  height: 500px;
+}

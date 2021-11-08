@@ -1,2 +1,2 @@
-export * from "./Chat";
-export * from "./Home";
+export * from "./Chat/Chat";
+export * from "./Home/Home";

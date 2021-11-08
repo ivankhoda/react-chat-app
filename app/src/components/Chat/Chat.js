@@ -1,7 +1,7 @@
 import queryString from "query-string";
 import { useEffect, useState } from "react";
-import { socket } from "../service/socket";
-import { ChatLink, CustomButton, Message, User } from "./utils/index";
+import { socket } from "../../service/socket";
+import { ChatLink, CustomButton, Message, User } from "../../utils/index";
 
 export function Chat() {
   let [username, setUsername] = useState("");

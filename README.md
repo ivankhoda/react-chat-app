@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-Runs the app in the concurrecncy development mode.\
+Run the app in app directory by npm run start script, and run server from main directory by run npm server script.\
 Server will work on [http://localhost:3001] and client will be served at [http://localhost:3000].
 
 ## Functionality

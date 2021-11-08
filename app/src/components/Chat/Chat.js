@@ -1,15 +1,16 @@
+import queryString from "query-string";
 import { useEffect, useState } from "react";
-import { socket } from "../service/socket";
-import { ChatLink, CustomButton, Message, User } from "./utils/index";
+import { socket } from "../../service/socket";
+import { ChatLink, CustomButton, Message, User } from "../../utils/index";
 
 export function Chat() {
   let [username, setUsername] = useState("");
-  const [rooms, setRoom] = useState();
+  const [room, setRoom] = useState();
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
   const [message, setMessage] = useState("");
 
-  const room = localStorage.getItem("room");
+  //const room = localStorage.getItem("room");
 
   function getLink() {
     const string = window.location.href;
@@ -22,6 +23,10 @@ export function Chat() {
 
   //Get information about recieved messages and users in room
   useEffect(() => {
+    const { username, room } = queryString.parse(window.location.search);
+    setRoom(room);
+    setUsername(username);
+
     function receivedMessage(message) {
       setMessages([...messages, message]);
     }

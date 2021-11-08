@@ -7,9 +7,9 @@ const { userJoin, getUser, userLeave, getRoomUsers } = require("./utils/user");
 const app = express();
 // Turning on http server
 const server = http.createServer(app);
-
+const socketIo = require("socket.io");
 // Adjust cors policy
-const io = require("socket.io")(server, {
+const io = socketIo(server, {
   cors: {
     origin: "http://localhost:3000",
     methods: ["GET", "POST"],
@@ -17,8 +17,8 @@ const io = require("socket.io")(server, {
 });
 
 // Getting acces to static files
-app.use(express.static(path.join(__dirname, "public")));
-
+app.use(express.static(path.join(__dirname + "..", "public")));
+const history = [];
 const botName = "ChatBot";
 
 // Run when client connect
@@ -44,6 +44,7 @@ io.on("connection", (socket) => {
   // Listen for chatMessage
   socket.on("chatMessage", (message) => {
     const user = getUser(socket.id);
+    history.push(message);
     io.to(user.room).emit("message", formatMessage(user.userName, message));
   });
 
